@@ -7,6 +7,7 @@ class colour:
     red = '\033[91m'
     end = '\033[0m'
 
+# Enter your username below:
 username = 'thisisnoahevans'
 
 count = int(0)
@@ -18,7 +19,9 @@ def percent(verifiedFollowers,totalFollowers):
     percent = percent * 100
     return percent
 
+# Enter your consumer keys below: the longest one goes last
 auth = tweepy.OAuthHandler('CONSUMER-KEY', 'CONSUMER-KEY')
+# Enter your access keys below: the one with a dash/hyphen goes first
 auth.set_access_token('ACCESS-KEY', 'ACCESS-KEY')
 api = tweepy.API(auth, wait_on_rate_limit=True, wait_on_rate_limit_notify=True, compression=True)
 
@@ -41,7 +44,7 @@ for person in page:
 
         textFile = open('verified-followers.txt', 'a')
         textFile.write(personUsername + '\n')
-    # Comment out the whole 'else' block for a cleaner output
+    # Comment out the whole 'else' block if you don't want every follower to be printed
     else:
        personUsername = personData.screen_name
        print(colour.red, f'Your follower @{personUsername} is not verified. (#{personNo})', colour.end)
