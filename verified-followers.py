@@ -29,6 +29,13 @@ print(colour.blue, 'Connected to API')
 
 ids = []
 
+from os import environ
+# get home directory of user
+homedir = environ.get("HOME")
+if homedir == None: # on windows it is $HOMEPATH
+    homedir = environ.get("HOMEPATH")
+assert type(homedir) == str 
+
 print('Finding followers of @' + username + '...')
 for page in tweepy.Cursor(api.followers_ids, screen_name=username).pages():
     ids.extend(page)
@@ -42,7 +49,7 @@ for person in page:
         personUsername = personData.screen_name
         print(colour.green, f'Your follower @{personUsername} is verified! (#{personNo})', colour.end)
 
-        textFile = open('verified-followers.txt', 'a')
+        textFile = open(f'{homedir}/verified-followers.txt', 'a')
         textFile.write(personUsername + '\n')
     # Comment out the whole 'else' block if you don't want every follower to be printed
     else:
@@ -59,7 +66,7 @@ if count == 0:
     print(colour.purple, 'You have', followers, 'followers.')
     print('Of those, you have no verified followers.', colour.end)
 if count == 1:
-    with open ('verified-followers.txt') as textFileRead:
+    with open (f'{homedir}/verified-followers.txt') as textFileRead:
         lines = textFileRead.readlines()
         follower = str(lines)
         follower = follower.replace('\n', '')
@@ -86,12 +93,6 @@ if count > 1:
     print(colour.end)
     if 'y' in pieQ:
         import pygal
-        from os import environ
-        # get home directory of user
-        homedir = environ.get("HOME")
-        if homedir == None: # on windows it is $HOMEPATH
-            homedir = environ.get("HOMEPATH")
-        assert type(homedir) == str 
         verifiedPie = round(percentFollowers)
         notVerified = followers - count
         notVerifiedPie = percent(notVerified, followers)
