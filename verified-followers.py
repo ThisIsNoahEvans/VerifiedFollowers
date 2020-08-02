@@ -86,6 +86,12 @@ if count > 1:
     print(colour.end)
     if 'y' in pieQ:
         import pygal
+        from os import environ
+        # get home directory of user
+        homedir = environ.get("HOME")
+        if homedir == None: # on windows it is $HOMEPATH
+            homedir = environ.get("HOMEPATH")
+        assert type(homedir) == str 
         verifiedPie = round(percentFollowers)
         notVerified = followers - count
         notVerifiedPie = percent(notVerified, followers)
@@ -93,5 +99,5 @@ if count > 1:
         piechart.add('Verified', verifiedPie)
         piechart.add('Not Verified', notVerifiedPie)
         piechart.render()
-        piechart.render_to_png('verified-followers.png')
+        piechart.render_to_png(f'{homedir}/verified-followers.png')
         print(colour.purple, 'A pie chart with your followers data has been saved to your home folder. See the GitHub repository\'s README for more.', colour.end)
