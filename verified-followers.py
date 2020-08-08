@@ -8,7 +8,7 @@ class colour:
     end = '\033[0m'
 
 # Enter your username below:
-username = 'thisisnoahevans'
+username = 'USERNAME'
 
 count = int(0)
 personNo = int(1)
