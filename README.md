@@ -16,6 +16,6 @@ Find your verified Twitter followers using Python!
 * Find your verified followers!
 
 # Important Info and Limitations
-This program was built on macOS. The list of followers and the pie chart were saved to my home folder (Cmd+Shift+H in Finder). On other operating systems, I am not sure where the files would be saved. Please let me know if you find out, or create a PR and update this README.
+The list of followers and the pie chart will be saved to your home folder.
 
 The progam will take quite a while, depending on how many followers you have. This is as it has to run the verification check on every one of your followers.
